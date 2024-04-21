@@ -1,0 +1,116 @@
+<!-- candidates.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <title>All Candidates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            margin-top: -60px;
+            margin-left: -190px;
+            position: fixed;
+            top: 60px;
+            width: 200px;
+        }
+
+        .right-container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-left: 220px;
+            width: calc(100% - 220px);
+            height: 100%;
+
+            flex-grow: 1;
+        }
+
+        .right-container h1 {
+            margin-bottom: 20px;
+        }
+
+        .candidates {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .candidate {
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            width: 400px;
+            text-align: center;
+            padding-bottom: 19px;
+        }
+
+        .candidate h2 {
+            margin-top: 20px;
+        }
+
+        .candidate p {
+            margin-bottom: 20px;
+        }
+
+        .candidate img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <%- include('partials/sidebar.ejs') %>
+        </div>
+        <div class="right-container">
+
+            <h1>All Candidates</h1>
+            <div class="candidates">
+                <% candidates.forEach(candidate=> { %>
+                    <div class="candidate">
+                        <h2>
+                            <%= candidate.name %>
+                        </h2>
+                        <p>Party: <%= candidate.party %>
+                        </p>
+                        <p>Position: <%= candidate.position %>
+                        </p>
+                        <img src="/uploads/<%= candidate.logo %>" alt="<%= candidate.name %>">
+                    </div>
+                    <% }); %>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

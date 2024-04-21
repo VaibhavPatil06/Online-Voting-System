@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e84eb;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        nav h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        nav button {
+            background-color: #ffd900;
+            color: #ff0000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 40px;
+            margin-left: 20px;
+        }
+
+        nav button:hover {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Candidate Styles */
+        .candidates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .candidate {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: calc(33.33% - 20px);
+            text-align: center;
+        }
+
+        .candidate h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .candidate img {
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .candidate p {
+            margin: 0;
+            color: #666;
+        }
+
+        .candidate form {
+            margin-top: 20px;
+        }
+
+        .candidate label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .candidate select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .candidate button {
+            background-color: #1e84eb;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .candidate button:hover {
+            background-color: #0d5cb6;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <h2>ONLINE VOTING SYSTEM</h2>
+        <div style="display: flex;">
+            <p
+                style="font-size: 30px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;margin-top:5px;margin-bottom:-15px">
+                Welcome
+                <%= username %>
+            </p>
+            <button><a href="logout">Log Out</a></button>
+        </div>
+    </nav>
+    <div class="container">
+
+        <h1 style="text-align: center;">India Council Election</h1>
+        <div class="candidates">
+
+            <% if (candidates.length> 0) { %>
+                <% candidates.forEach(candidate=> { %>
+                    <div class="candidate">
+                        <h2>
+                            <%= candidate.username %>
+                        </h2>
+                        <img src="/uploads/<%= candidate.logo %>" alt="<%= candidate.name %>"
+                            style="height:100px; width:100px; ">
+                        <p>
+                            <%= candidate.name %> <br>
+                                Party : <%= candidate.party %>
+                        </p>
+                        <form action="/submit_vote" method="post" id="voteForm">
+                            <input type="hidden" name="voterName" value="<%= username %>">
+                            <input type="hidden" name="candidateName" value="<%= candidate.name %>">
+                            <input type="hidden" name="candidateParty" value="<%= candidate.party %>">
+                            <input type="hidden" name="candidatePosition" value="<%= candidate.position %>">
+                            <% if (candidate.positions && candidate.positions.length> 0) { %>
+                                <% candidate.positions.forEach(position=> { %>
+                                    <% const positionSlug=position.description.replace(/\s+/g, '-' ).toLowerCase(); %>
+                                        <label for="<%= positionSlug %>">Vote for <%= position.description %>:</label>
+                                        <select name="<%= positionSlug %>">
+                                            <% position.candidates.forEach(candidate=> { %>
+                                                <option value="<%= candidate.id %>">
+                                                    <%= candidate.username %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                        <% }); %>
+                                            <% } %>
+                                                <button type="submit">Vote</button>
+                                                <p class="error-message" id="errorMessage" style="display: none;">You
+                                                    have already voted!</p>
+                        </form>
+                    </div>
+                    <% }); %>
+                        <% } else { %>
+                            <p>No candidates available.</p>
+                            <% } %>
+
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('voteForm').addEventListener('submit', async function (event) {
+            var hasVoted = localStorage.getItem('hasVoted');
+            if (hasVoted) {
+                event.preventDefault();
+                document.getElementById('errorMessage').style.display = 'block';
+            } else {
+                localStorage.setItem('hasVoted', true);
+            }
+            const formData = new FormData(this);
+            try {
+                const response = await fetch('/submit_vote', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>

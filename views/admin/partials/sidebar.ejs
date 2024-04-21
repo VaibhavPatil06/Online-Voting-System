@@ -1,0 +1,43 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white" style="width: 280px; height: 45.5em;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi pe-none me-2" width="40" height="32">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+        <span class="fs-4">Dashboard</span>
+    </a>
+    <hr>
+
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="admin_dashboard" class="nav-link text-white">Dashboard</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="votersDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Voters
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="votersDropdown">
+                <li><a class="dropdown-item" href="view_voters">View Voters</a></li>
+                <li><a class="dropdown-item" href="add_voters">Add Voter</a></li>
+                <li><a class="dropdown-item" href="remove_voters">Delete Voter</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="candidatesDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Candidates
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="candidatesDropdown">
+                <li><a class="dropdown-item" href="view_candidate">View Candidates</a></li>
+                <li><a class="dropdown-item" href="add_candidate">Add Candidate</a></li>
+                <li><a class="dropdown-item" href="remove_candidate">Remove Candidate</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a href="logout" class="nav-link text-white">Logout</a>
+        </li>
+    </ul>
+    <hr>
+
+</div>

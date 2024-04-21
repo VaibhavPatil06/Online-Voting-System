@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 400px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 15px;
+            padding-left: 30px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid #007bff;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            border-bottom: 2px solid #0056b3;
+        }
+
+        .login-container input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .login-container .register-link {
+            margin-top: 20px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .login-container .register-link a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .login-container .register-link a:hover {
+            color: #0056b3;
+        }
+
+        .login-container .input-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-container .input-icon i {
+            position: absolute;
+            left: 0;
+            color: #007bff;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <form action="admin_submit" method="post">
+            <div class="input-icon">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" id="username" placeholder="Username">
+            </div>
+            <div class="input-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="Password">
+            </div>
+            <input type="submit" value="Login">
+        </form>
+
+    </div>
+</body>
+
+</html>
