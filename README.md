@@ -58,7 +58,7 @@ This is an Online Voting System web application developed using HTML, CSS, JavaS
 4. Run the application:
 
    ```bash
-   npm start
+   node app.js
    ```
 
    The application will be running at `http://localhost:3000`.
