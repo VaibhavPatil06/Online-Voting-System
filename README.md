@@ -1,13 +1,9 @@
-Sure, here's the content in Markdown format suitable for a README.md file:
-
-```markdown
 # Online Voting System
 
 This is an Online Voting System web application developed using HTML, CSS, JavaScript, Node.js, Express.js, Bootstrap, and EJS (Embedded JavaScript).
 
 ## Features
-
-- **Authentication**:
+**Authentication**:
   - Voter login
   - Admin login
 
