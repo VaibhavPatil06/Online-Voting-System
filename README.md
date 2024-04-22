@@ -30,6 +30,7 @@ This is an Online Voting System web application developed using HTML, CSS, JavaS
 - EJS (Embedded JavaScript)
 - Bootstrap
 - Bcrypt (for robust authentication)
+- Mysql
 
 ## Installation
 
