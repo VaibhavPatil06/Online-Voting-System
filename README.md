@@ -7,11 +7,11 @@ This is an Online Voting System web application developed using HTML, CSS, JavaS
   - Voter login
   - Admin login
 
-- **Voter Panel**:
+**Voter Panel**:
   - Voter registration
   - Voter home page
 
-- **Admin Panel**:
+**Admin Panel**:
   - Add voter
   - View voter
   - Remove voter
@@ -51,7 +51,13 @@ This is an Online Voting System web application developed using HTML, CSS, JavaS
    npm install
    ```
 
-4. Run the application:
+4. Import Database:
+
+   ```bash
+   Import Datasbe into Mysql 
+   ```
+
+5. Run the application:
 
    ```bash
    node app.js
